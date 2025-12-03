@@ -2,104 +2,70 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Sanierung Löschwasseranlagen Nass</title>
+  <title>Sanierung Löschwasseranlagen (Nass)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
       --bg: #f5f7fb;
-      --card-bg: #ffffff;
-      --accent: #1d4ed8;
-      --accent-soft: #dbeafe;
-      --border: #d1d5db;
-      --text-main: #111827;
-      --text-muted: #6b7280;
+      --card: #ffffff;
+      --accent: #1f6feb;
+      --accent-soft: #e0ecff;
+      --border: #d0d7de;
+      --text: #24292f;
+      --muted: #57606a;
+      --danger: #d73a49;
     }
 
     * {
       box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
     }
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding: 1.5rem;
       background: var(--bg);
-      color: var(--text-main);
-    }
-
-    .page {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 24px 16px 40px;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 16px;
+      color: var(--text);
     }
 
     h1 {
+      margin: 0 0 0.25rem;
       font-size: 1.6rem;
-      margin: 0;
-    }
-
-    .subtitle {
-      margin: 4px 0 0;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    .btn-print {
-      padding: 8px 14px;
-      font-size: 0.9rem;
-      border-radius: 999px;
-      border: 1px solid var(--accent);
-      background: white;
-      color: var(--accent);
-      cursor: pointer;
-    }
-
-    .btn-print:hover {
-      background: var(--accent-soft);
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      padding: 16px 18px 18px;
-      margin-bottom: 16px;
-      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
     }
 
     h2 {
+      margin: 0;
       font-size: 1.1rem;
-      margin: 0 0 12px;
     }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px 18px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px 18px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 1.25rem;
       font-size: 0.9rem;
     }
 
+    .card {
+      background: var(--card);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.75rem 1rem;
+    }
+
     label {
-      font-weight: 500;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.15rem;
     }
 
     input[type="text"],
@@ -107,524 +73,741 @@
     input[type="date"],
     select,
     textarea {
-      font: inherit;
-      padding: 7px 8px;
-      border-radius: 8px;
+      width: 100%;
+      padding: 0.4rem 0.45rem;
+      border-radius: 6px;
       border: 1px solid var(--border);
-      background: #f9fafb;
-    }
-
-    input[type="text"]:focus,
-    input[type="number"]:focus,
-    input[type="date"]:focus,
-    select:focus,
-    textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-      background: #ffffff;
-      box-shadow: 0 0 0 1px var(--accent-soft);
+      font-size: 0.85rem;
+      background: #fff;
     }
 
     textarea {
-      min-height: 70px;
+      min-height: 60px;
       resize: vertical;
     }
 
-    details {
-      border-radius: 12px;
+    .checkbox-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-top: 0.2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      width: auto;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    button {
+      border-radius: 999px;
       border: 1px solid var(--border);
-      background: var(--card-bg);
-      margin-bottom: 14px;
+      background: #fff;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    button.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    button.secondary {
+      background: var(--accent-soft);
+      border-color: transparent;
+      color: var(--accent);
+    }
+
+    button.danger {
+      border-color: var(--danger);
+      color: var(--danger);
+      background: #fff5f5;
+    }
+
+    button.icon-only {
+      border-radius: 999px;
+      width: 26px;
+      height: 26px;
+      padding: 0;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    /* Accordion */
+    .accordion-item {
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #fff;
+      margin-bottom: 0.75rem;
       overflow: hidden;
     }
 
-    summary {
-      list-style: none;
-      cursor: pointer;
-      padding: 12px 18px;
-      font-weight: 600;
+    .accordion-header {
+      width: 100%;
+      border: none;
+      padding: 0.55rem 0.8rem;
+      background: #f1f4fb;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: #eff6ff;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
     }
 
-    summary::-webkit-details-marker {
+    .accordion-header span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .accordion-header .badge {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 0.05rem 0.5rem;
+      font-size: 0.7rem;
+    }
+
+    .accordion-body {
+      padding: 0.75rem 0.9rem 0.85rem;
       display: none;
     }
 
-    .summary-title {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .summary-pill {
-      font-size: 0.7rem;
-      padding: 2px 8px;
-      border-radius: 999px;
-      border: 1px solid #bfdbfe;
-      color: #1d4ed8;
-      background: #eff6ff;
-    }
-
-    .summary-icon {
-      font-size: 1.1rem;
-      opacity: 0.7;
-    }
-
-    .details-body {
-      padding: 14px 18px 16px;
-      border-top: 1px solid #e5e7eb;
-    }
-
-    .hint {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 6px;
-    }
-
-    .section-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin: 10px 0 4px;
-    }
-
-    .image-block {
-      margin-top: 16px;
-      padding: 10px 12px 12px;
-      border-radius: 10px;
-      border: 1px dashed #cbd5f5;
-      background: #f9fafb;
-    }
-
-    .image-block img {
-      max-width: 100%;
-      height: auto;
+    .accordion-item.open .accordion-body {
       display: block;
-      margin: 4px auto 6px;
     }
 
-    .image-caption {
-      margin: 0;
+    .accordion-item.open .accordion-header {
+      border-bottom: 1px solid var(--border);
+      background: #e8f0ff;
+    }
+
+    .items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-top: 0.5rem;
+    }
+
+    .item-card {
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.6rem 0.7rem;
+      background: #fafbff;
+      position: relative;
+    }
+
+    .item-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
       font-size: 0.8rem;
-      color: var(--text-muted);
-      text-align: center;
+      color: var(--muted);
     }
 
-    @media (max-width: 768px) {
-      .grid-2,
-      .grid-3 {
-        grid-template-columns: 1fr;
-      }
+    .item-title-row strong {
+      color: var(--text);
+    }
 
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 0.55rem 0.7rem;
+    }
 
-      .btn-print {
-        align-self: stretch;
-        text-align: center;
-        width: 100%;
-      }
+    .item-grid-haspel-main {
+      grid-template-columns: 0.7fr 0.4fr 0.6fr 0.6fr 0.7fr 0.7fr;
+    }
+
+    .item-grid-haspel-oesen {
+      grid-template-columns: 0.7fr 0.7fr 0.8fr 0.7fr 0.7fr 0.7fr;
+    }
+
+    .item-grid-vorsatz-main {
+      grid-template-columns: 0.7fr 0.4fr 0.6fr 0.6fr 0.6fr 0.6fr;
+    }
+
+    .item-grid-vorsatz-masse {
+      grid-template-columns: 0.8fr 0.9fr 0.9fr 0.9fr;
+    }
+
+    .item-grid-wandhydrant-main {
+      grid-template-columns: 0.7fr 0.7fr 0.7fr 0.7fr;
+    }
+
+    .item-grid-wandhydrant-masse {
+      grid-template-columns: 0.7fr 0.7fr 0.7fr 0.7fr 0.7fr;
+    }
+
+    .footer-note {
+      margin-top: 0.3rem;
+      font-size: 0.75rem;
+      color: var(--muted);
     }
 
     @media print {
       body {
-        background: #ffffff;
+        background: #fff;
+        padding: 0;
       }
-
-      .btn-print {
+      .card,
+      .accordion-item {
+        box-shadow: none;
+      }
+      .toolbar {
         display: none;
       }
-
-      details {
-        border-color: #9ca3af;
+      button {
+        display: none !important;
       }
-
-      summary {
-        background: #e5e7eb !important;
+      .accordion-body {
+        display: block !important;
       }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <header>
-      <div>
-        <h1>Sanierung Löschwasseranlagen Nass</h1>
-        <p class="subtitle">Aufnahme von Sanierungsdaten für Schlauchhaspeln und Wandhydranten</p>
-      </div>
-      <button class="btn-print" onclick="window.print()">Drucken / PDF</button>
-    </header>
+  <header style="margin-bottom:0.75rem;">
+    <h1>Sanierung Löschwasseranlagen (Nass)</h1>
+    <div class="subtitle">
+      Erfassung der Sanierungsdaten für Schlauchhaspeln, Vorsatzschränke und
+      Wandhydrantenschränke.
+    </div>
+  </header>
 
-    <!-- KOPF -->
-    <section class="card">
-      <h2>Allgemeine Angaben</h2>
-      <div class="grid-2">
-        <div class="field">
-          <label>Kunde</label>
-          <input type="text" placeholder="Firmenname / Kunde" />
-        </div>
-        <div class="field">
-          <label>Objekt / Standort</label>
-          <input type="text" placeholder="z. B. Niederlassung, Halle, Gebäude" />
-        </div>
-        <div class="field">
-          <label>Straße / Haus-Nr.</label>
-          <input type="text" />
-        </div>
-        <div class="field">
-          <label>PLZ / Ort</label>
-          <input type="text" />
-        </div>
-        <div class="field">
-          <label>Ansprechpartner Kunde</label>
-          <input type="text" />
-        </div>
-        <div class="field">
-          <label>Telefon / E-Mail</label>
-          <input type="text" />
-        </div>
-        <div class="field">
-          <label>Begehung durchgeführt durch</label>
-          <input type="text" placeholder="Name des Begeher" />
-        </div>
-        <div class="field">
-          <label>Datum der Begehung</label>
-          <input type="date" />
-        </div>
-      </div>
-      <div class="field" style="margin-top:10px;">
-        <label>Bemerkung (allgemein)</label>
-        <textarea placeholder="Besondere Hinweise zum Objekt, Zugang, Besonderheiten …"></textarea>
-      </div>
-    </section>
-
-    <!-- SANIERUNG SCHLAUCHHASPEL -->
-    <details open>
-      <summary>
-        <span class="summary-title">
-          <span class="summary-icon">🧰</span>
-          Sanierung Schlauchhaspel
-        </span>
-        <span class="summary-pill">Haspel</span>
-      </summary>
-      <div class="details-body">
-        <div class="grid-3">
-          <div class="field">
-            <label>ID-Nummer</label>
-            <input type="text" placeholder="Zuordnung zur Tür / Haspel" />
-          </div>
-          <div class="field">
-            <label>Anzahl</label>
-            <input type="number" min="1" value="1" />
-          </div>
-          <div class="field">
-            <label>Schlauchlänge [m]</label>
-            <input type="number" min="0" step="0.1" />
-          </div>
-
-          <div class="field">
-            <label>Schlauch-Innendurchmesser</label>
-            <select>
-              <option value="">Bitte wählen …</option>
-              <option>25 mm</option>
-              <option>19 mm</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>Außendurchmesser Haspelscheiben [mm]</label>
-            <input type="number" min="0" />
-          </div>
-          <div class="field">
-            <label>Scheibenabstand [mm]</label>
-            <input type="number" min="0" />
-          </div>
-
-          <div class="field">
-            <label>Wasseranschluss</label>
-            <select>
-              <option value="">Bitte wählen …</option>
-              <option>Seitlich</option>
-              <option>Rückwand</option>
-              <option>Dach</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>Haspel-Ausführung</label>
-            <select>
-              <option value="">Bitte wählen …</option>
-              <option>Links-Haspel</option>
-              <option>Rechts-Haspel</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>Feuerlöscherfach</label>
-            <select>
-              <option value="">Bitte wählen …</option>
-              <option>Mit Fach</option>
-              <option>Ohne Fach</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label>Ösen-Innendurchmesser [mm]</label>
-            <input type="number" min="0" />
-          </div>
-          <div class="field">
-            <label>Innenabstand zwischen Ösen [mm]</label>
-            <input type="number" min="0" />
-          </div>
-          <div class="field">
-            <label>Abstand unterste Öse bis Innenkante Schrank [mm]</label>
-            <input type="number" min="0" />
-          </div>
-
-          <div class="field">
-            <label>Schrankbreite [mm]</label>
-            <input type="number" min="0" />
-          </div>
-          <div class="field">
-            <label>Schrankhöhe [mm]</label>
-            <input type="number" min="0" />
-          </div>
-          <div class="field">
-            <label>Schranktiefe [mm]</label>
-            <input type="number" min="0" />
-          </div>
-        </div>
-
-        <div class="field" style="margin-top:10px;">
-          <label>Bemerkung</label>
-          <textarea placeholder="z. B. Besonderheiten bei der Montage, Hindernisse, zusätzliche Wünsche …"></textarea>
-        </div>
-
-        <p class="hint">
-          Hinweis: Mehrere identische Haspeln können über die Anzahl aufgenommen werden.
-        </p>
-
-        <div class="image-block">
-          <div class="section-title">Maßskizze (Beispiel)</div>
-          <img src="schlauchhaspel_skizze.jpg" alt="Beispielskizze für Schlauchhaspel-Maße" />
-          <p class="image-caption">Beispielabbildung für Maßer­mittlung. Bilddatei im gleichen Ordner wie diese HTML-Datei speichern.</p>
-        </div>
-      </div>
-    </details>
-
-    <!-- SANIERUNG VORSATZSCHRANK -->
-    <details>
-      <summary>
-        <span class="summary-title">
-          <span class="summary-icon">📦</span>
-          Sanierung Vorsatzschrank
-        </span>
-        <span class="summary-pill">Vorsatzschrank</span>
-      </summary>
-      <div class="details-body">
-        <div class="grid-3">
-          <div class="field">
-            <label>ID-Nummer</label>
-            <input type="text" />
-          </div>
-          <div class="field">
-            <label>Anzahl</label>
-            <input type="number" min="1" value="1" />
-          </div>
-          <div class="field">
-            <label>Schlauchlänge [m]</label>
-            <input type="number" min="0" step="0.1" />
-          </div>
-
-          <div class="field">
-            <label>Schlauch-Innendurchmesser</label>
-            <select>
-              <option value="">Bitte wählen …</option>
-              <option>25 mm</option>
-              <option>19 mm</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>Wasseranschluss</label>
-            <select>
-              <option value="">Bitte wählen …</option>
-              <option>Rechts</option>
-              <option>Links</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>Feuerlöscherfach</label>
-            <select>
-              <option value="">Bitte wählen …</option>
-              <option>Mit Fach</option>
-              <option>Ohne Fach</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label>Schrankbreite [mm]</label>
-            <input type="number" min="0" />
-          </div>
-          <div class="field">
-            <label>Schrankhöhe [mm]</label>
-            <input type="number" min="0" />
-          </div>
-          <div class="field">
-            <label>Schranktiefe [mm]</label>
-            <input type="number" min="0" />
-          </div>
-
-          <div class="field">
-            <label>Abstand Schrankinnenseite bis Handrad-Schlauchanschlussventil [mm]</label>
-            <input type="number" min="0" />
-          </div>
-          <div class="field">
-            <label>Innenmaß Schrankinnenseite bis Unterkante Schlauchanschluss [mm]</label>
-            <input type="number" min="0" />
-          </div>
-          <div class="field">
-            <label>Bohrung mittig bis Oberkante Schrank [mm]</label>
-            <input type="number" min="0" />
-          </div>
-
-          <div class="field">
-            <label>Bohrung mittig bis Schrankrückwand [mm]</label>
-            <input type="number" min="0" />
-          </div>
-        </div>
-
-        <div class="field" style="margin-top:10px;">
-          <label>Bemerkung</label>
-          <textarea></textarea>
-        </div>
-
-        <div class="image-block">
-          <div class="section-title">Maßskizze (Beispiel)</div>
-          <img src="vorsatzschrank_skizze.jpg" alt="Beispielskizze für Vorsatzschrank-Maße" />
-          <p class="image-caption">Beispielabbildung für Maßer­mittlung. Bilddatei im gleichen Ordner wie diese HTML-Datei speichern.</p>
-        </div>
-      </div>
-    </details>
-
-    <!-- SANIERUNG WANDHYDRANTENSCHRANK KOMPLETT -->
-    <details>
-      <summary>
-        <span class="summary-title">
-          <span class="summary-icon">🚒</span>
-          Sanierung Wandhydrantenschrank komplett
-        </span>
-        <span class="summary-pill">Wandhydrant</span>
-      </summary>
-      <div class="details-body">
-        <div class="grid-3">
-          <div class="field">
-            <label>ID-Nummer</label>
-            <input type="text" />
-          </div>
-          <div class="field">
-            <label>Anzahl</label>
-            <input type="number" min="1" value="1" />
-          </div>
-          <div class="field">
-            <label>Wandhydrantenart</label>
-            <select>
-              <option value="">Bitte wählen …</option>
-              <option>nach DIN 1461 Teil 1 Typ F (formstabiler Schlauch, 2&quot;-Ventil)</option>
-              <option>nach DIN 1461 Teil 1 Typ S (¾&quot;-formstabiler Schlauch, 1&quot;-Ventil)</option>
-              <option>nach DIN 1461 Teil 6 (C42-Flachschlauch, 2&quot;-Ventil)</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label>Schlauchlänge [m]</label>
-            <input type="number" min="0" step="0.1" />
-          </div>
-          <div class="field">
-            <label>Ausführung</label>
-            <select>
-              <option value="">Bitte wählen …</option>
-              <option>Aufputzschrank</option>
-              <option>Unterputzschrank</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>Material</label>
-            <select>
-              <option value="">Bitte wählen …</option>
-              <option>Verzinktes Stahlblech</option>
-              <option>Edelstahl</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label>Oberfläche / Farbe</label>
-            <select>
-              <option value="">Bitte wählen …</option>
-              <option>Rot RAL 3001</option>
-              <option>Grau RAL 7035</option>
-              <option>Edelstahl geschliffen Korn 240</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>Wasseranschlussposition</label>
-            <select>
-              <option value="">Bitte wählen …</option>
-              <option>Rechts Seitenwand</option>
-              <option>Links Seitenwand</option>
-              <option>Rechts Rückwand</option>
-              <option>Links Rückwand</option>
-              <option>Rechts Dach</option>
-              <option>Links Dach</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>Druckknopfmelderfach</label>
-            <select>
-              <option value="">Bitte wählen …</option>
-              <option>Mit Melderfach</option>
-              <option>Ohne Melderfach</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label>Feuerlöscherfach</label>
-            <select>
-              <option value="">Bitte wählen …</option>
-              <option>Für liegenden Feuerlöscher</option>
-              <option>Für stehenden Feuerlöscher</option>
-              <option>Ohne Feuerlöscherfach</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>Montageart</label>
-            <select>
-              <option value="">Bitte wählen …</option>
-              <option>Wandmontage</option>
-              <option>Untergestell</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>Verfügbare Breite [mm]</label>
-            <input type="number" min="0" />
-          </div>
-
-          <div class="field">
-            <label>Verfügbare Höhe [mm]</label>
-            <input type="number" min="0" />
-          </div>
-          <div class="field">
-            <label>Verfügbare Tiefe [mm]</label>
-            <input type="number" min="0" />
-          </div>
-        </div>
-
-        <div class="field" style="margin-top:10px;">
-          <label>Bemerkung</label>
-          <textarea></textarea>
-        </div>
-      </div>
-    </details>
+  <div class="toolbar">
+    <button class="primary" id="printBtn">🖨️ Drucken / PDF erstellen</button>
+    <button class="secondary" id="expandAllBtn">▾ Alle Bereiche öffnen</button>
+    <button class="secondary" id="collapseAllBtn">▴ Alle Bereiche schließen</button>
   </div>
+
+  <!-- Allgemeine Angaben -->
+  <section class="card">
+    <h2>Allgemeine Angaben</h2>
+    <div class="grid" style="margin-top:0.5rem;">
+      <div>
+        <label for="kunde">Kunde / Firma</label>
+        <input type="text" id="kunde" placeholder="z. B. Muster GmbH" />
+      </div>
+      <div>
+        <label for="objekt">Objekt / Standort</label>
+        <input
+          type="text"
+          id="objekt"
+          placeholder="z. B. Werk 1, Halle A"
+        />
+      </div>
+      <div>
+        <label for="adresse">Adresse</label>
+        <input
+          type="text"
+          id="adresse"
+          placeholder="Straße, Haus-Nr., PLZ, Ort"
+        />
+      </div>
+      <div>
+        <label for="begehungDatum">Datum der Begehung</label>
+        <input type="date" id="begehungDatum" />
+      </div>
+      <div>
+        <label for="begehungDurch">Begehung durchgeführt durch</label>
+        <input type="text" id="begehungDurch" placeholder="Name" />
+      </div>
+    </div>
+    <div style="margin-top:0.6rem;">
+      <label for="allgBemerkung">Allgemeine Bemerkungen</label>
+      <textarea
+        id="allgBemerkung"
+        placeholder="Besonderheiten zum Objekt, Zugang, Sicherheitsvorgaben …"
+      ></textarea>
+    </div>
+  </section>
+
+  <!-- Schlauchhaspel -->
+  <section class="accordion-item" data-section="haspel">
+    <button class="accordion-header">
+      <span>Sanierung Schlauchhaspel</span>
+      <span class="badge"><span class="count">0</span> Positionen</span>
+    </button>
+    <div class="accordion-body">
+      <button class="secondary add-item" data-type="haspel">
+        ➕ Position Schlauchhaspel
+      </button>
+      <div class="items-list" id="haspelList"></div>
+      <div class="footer-note">
+        Hinweis: Mehrere identische Haspeln können über die Anzahl erfasst
+        werden – abweichende Haspeln bitte als neue Position anlegen.
+      </div>
+    </div>
+  </section>
+
+  <!-- Vorsatzschrank -->
+  <section class="accordion-item" data-section="vorsatz">
+    <button class="accordion-header">
+      <span>Sanierung Vorsatzschrank</span>
+      <span class="badge"><span class="count">0</span> Positionen</span>
+    </button>
+    <div class="accordion-body">
+      <button class="secondary add-item" data-type="vorsatz">
+        ➕ Position Vorsatzschrank
+      </button>
+      <div class="items-list" id="vorsatzList"></div>
+    </div>
+  </section>
+
+  <!-- Wandhydrantenschrank -->
+  <section class="accordion-item" data-section="wandhydrant">
+    <button class="accordion-header">
+      <span>Sanierung Wandhydrantenschrank komplett</span>
+      <span class="badge"><span class="count">0</span> Positionen</span>
+    </button>
+    <div class="accordion-body">
+      <button class="secondary add-item" data-type="wandhydrant">
+        ➕ Position Wandhydrantenschrank
+      </button>
+      <div class="items-list" id="wandhydrantList"></div>
+    </div>
+  </section>
+
+  <!-- TEMPLATES -->
+
+  <!-- Schlauchhaspel -->
+  <template id="tpl-haspel">
+    <div class="item-card">
+      <div class="item-title-row">
+        <strong>Schlauchhaspel – Position <span class="pos-index"></span></strong>
+        <button class="icon-only danger remove-item" title="Position löschen">
+          ✕
+        </button>
+      </div>
+
+      <div class="item-grid item-grid-haspel-main">
+        <div>
+          <label>ID-Nummer</label>
+          <input type="text" name="idNummer" />
+        </div>
+        <div>
+          <label>Anzahl</label>
+          <input type="number" name="anzahl" min="1" value="1" />
+        </div>
+        <div>
+          <label>Schlauchlänge [m]</label>
+          <input type="number" name="schlauchlaenge" />
+        </div>
+        <div>
+          <label>Innendurchmesser Schlauch</label>
+          <select name="innenD">
+            <option value="">Bitte wählen …</option>
+            <option>25 mm</option>
+            <option>19 mm</option>
+          </select>
+        </div>
+        <div>
+          <label>Außendurchmesser Haspelscheiben [mm]</label>
+          <input type="number" name="aussenScheibe" />
+        </div>
+        <div>
+          <label>Scheibenabstand [mm]</label>
+          <input type="number" name="scheibenAbstand" />
+        </div>
+      </div>
+
+      <div class="item-grid item-grid-haspel-main" style="margin-top:0.45rem;">
+        <div>
+          <label>Wasseranschluss</label>
+          <select name="wasseranschluss">
+            <option value="">Bitte wählen …</option>
+            <option>seitlich</option>
+            <option>Rückwand</option>
+            <option>Dach</option>
+          </select>
+        </div>
+        <div>
+          <label>Haspel-Ausführung</label>
+          <select name="haspelSeite">
+            <option value="">Bitte wählen …</option>
+            <option>Links-Haspel</option>
+            <option>Rechts-Haspel</option>
+          </select>
+        </div>
+        <div>
+          <label>Feuerlöscherfach</label>
+          <select name="feuerloescherfach">
+            <option value="">Bitte wählen …</option>
+            <option>mit Feuerlöscherfach</option>
+            <option>ohne Feuerlöscherfach</option>
+          </select>
+        </div>
+        <div>
+          <label>Schrankbreite [mm]</label>
+          <input type="number" name="breite" />
+        </div>
+        <div>
+          <label>Schrankhöhe [mm]</label>
+          <input type="number" name="hoehe" />
+        </div>
+        <div>
+          <label>Schranktiefe [mm]</label>
+          <input type="number" name="tiefe" />
+        </div>
+      </div>
+
+      <div class="item-grid item-grid-haspel-oesen" style="margin-top:0.45rem;">
+        <div>
+          <label>Ösen-Innendurchmesser [mm]</label>
+          <input type="number" name="oesenDurchmesser" />
+        </div>
+        <div>
+          <label>Innenabstand Ösen [mm]</label>
+          <input type="number" name="oesenAbstand" />
+        </div>
+        <div>
+          <label>Abstand unterste Öse bis Innenkante Schrank [mm]</label>
+          <input type="number" name="abstandUntersteOese" />
+        </div>
+        <div>
+          <label>Foto-Dateiname</label>
+          <input type="text" name="fotoName" placeholder="z. B. IMG_1234.jpg" />
+          <label class="checkbox-row">
+            <input type="checkbox" name="fotoGemacht" /> Foto gemacht
+          </label>
+        </div>
+      </div>
+
+      <div style="margin-top:0.45rem;">
+        <label>Bemerkung</label>
+        <textarea name="bemerkung"></textarea>
+      </div>
+    </div>
+  </template>
+
+  <!-- Vorsatzschrank -->
+  <template id="tpl-vorsatz">
+    <div class="item-card">
+      <div class="item-title-row">
+        <strong>Vorsatzschrank – Position <span class="pos-index"></span></strong>
+        <button class="icon-only danger remove-item" title="Position löschen">
+          ✕
+        </button>
+      </div>
+
+      <div class="item-grid item-grid-vorsatz-main">
+        <div>
+          <label>ID-Nummer</label>
+          <input type="text" name="idNummer" />
+        </div>
+        <div>
+          <label>Anzahl</label>
+          <input type="number" name="anzahl" min="1" value="1" />
+        </div>
+        <div>
+          <label>Schlauchlänge [m]</label>
+          <input type="number" name="schlauchlaenge" />
+        </div>
+        <div>
+          <label>Innendurchmesser Schlauch</label>
+          <select name="innenD">
+            <option value="">Bitte wählen …</option>
+            <option>25 mm</option>
+            <option>19 mm</option>
+          </select>
+        </div>
+        <div>
+          <label>Wasseranschluss</label>
+          <select name="wasseranschluss">
+            <option value="">Bitte wählen …</option>
+            <option>rechtsseitig</option>
+            <option>linksseitig</option>
+          </select>
+        </div>
+        <div>
+          <label>Feuerlöscherfach</label>
+          <select name="feuerloescherfach">
+            <option value="">Bitte wählen …</option>
+            <option>mit Fach für Feuerlöscher</option>
+            <option>ohne Feuerlöscherfach</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="item-grid item-grid-vorsatz-masse" style="margin-top:0.45rem;">
+        <div>
+          <label>Schrankbreite [mm]</label>
+          <input type="number" name="breite" />
+        </div>
+        <div>
+          <label>Schrankhöhe [mm]</label>
+          <input type="number" name="hoehe" />
+        </div>
+        <div>
+          <label>Schranktiefe [mm]</label>
+          <input type="number" name="tiefe" />
+        </div>
+        <div>
+          <label>Abstand Schrankinnenseite bis Handrad-Schlauchanschlussventil [mm]</label>
+          <input type="number" name="abstandHandrad" />
+        </div>
+      </div>
+
+      <div class="item-grid item-grid-vorsatz-masse" style="margin-top:0.45rem;">
+        <div>
+          <label>Innenmaß Schrankinnenseite bis Unterkante Schlauchanschluss [mm]</label>
+          <input type="number" name="innenUnterkante" />
+        </div>
+        <div>
+          <label>Bohrung Schlauchanschluss – Mitte bis Oberkante [mm]</label>
+          <input type="number" name="bohrungOben" />
+        </div>
+        <div>
+          <label>Schlauchanschluss – Mitte bis Schrankrückwand [mm]</label>
+          <input type="number" name="bohrungHinten" />
+        </div>
+        <div>
+          <label>Foto-Dateiname</label>
+          <input type="text" name="fotoName" />
+          <label class="checkbox-row">
+            <input type="checkbox" name="fotoGemacht" /> Foto gemacht
+          </label>
+        </div>
+      </div>
+
+      <div style="margin-top:0.45rem;">
+        <label>Bemerkung</label>
+        <textarea name="bemerkung"></textarea>
+      </div>
+    </div>
+  </template>
+
+  <!-- Wandhydrantenschrank -->
+  <template id="tpl-wandhydrant">
+    <div class="item-card">
+      <div class="item-title-row">
+        <strong>Wandhydrantenschrank – Position <span class="pos-index"></span></strong>
+        <button class="icon-only danger remove-item" title="Position löschen">
+          ✕
+        </button>
+      </div>
+
+      <div class="item-grid item-grid-wandhydrant-main">
+        <div>
+          <label>ID-Nummer</label>
+          <input type="text" name="idNummer" />
+        </div>
+        <div>
+          <label>Anzahl</label>
+          <input type="number" name="anzahl" min="1" value="1" />
+        </div>
+        <div>
+          <label>Wandhydranten-Art</label>
+          <select name="art">
+            <option value="">Bitte wählen …</option>
+            <option>DIN 1461 Teil 1 Typ F – formstabiler Schlauch, 2″ Schlauchanschlussventil</option>
+            <option>DIN 1461 Teil 1 Typ S – ¾″ formstabiler Schlauch, 1″ Schlauchanschlussventil</option>
+            <option>DIN 1461 Teil 6 – C42 Flachschlauch, 2″ Schlauchanschlussventil</option>
+          </select>
+        </div>
+        <div>
+          <label>Schlauchlänge [m]</label>
+          <input type="number" name="schlauchlaenge" />
+        </div>
+      </div>
+
+      <div class="item-grid item-grid-wandhydrant-main" style="margin-top:0.45rem;">
+        <div>
+          <label>Ausführung</label>
+          <select name="ausfuehrung">
+            <option value="">Bitte wählen …</option>
+            <option>Aufputzschrank</option>
+            <option>Unterputzschrank</option>
+          </select>
+        </div>
+        <div>
+          <label>Material</label>
+          <select name="material">
+            <option value="">Bitte wählen …</option>
+            <option>verzinktes Stahlblech</option>
+            <option>Edelstahl</option>
+          </select>
+        </div>
+        <div>
+          <label>Oberfläche</label>
+          <select name="oberflaeche">
+            <option value="">Bitte wählen …</option>
+            <option>Rot RAL 3001</option>
+            <option>Grau RAL 7035</option>
+            <option>geschliffen Korn 240 (Edelstahl)</option>
+          </select>
+        </div>
+        <div>
+          <label>Montageart</label>
+          <select name="montage">
+            <option value="">Bitte wählen …</option>
+            <option>Wandmontage</option>
+            <option>Untergestell</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="item-grid item-grid-wandhydrant-masse" style="margin-top:0.45rem;">
+        <div>
+          <label>Wasseranschluss-Position</label>
+          <select name="wasseranschluss">
+            <option value="">Bitte wählen …</option>
+            <option>Rechts Seitenwand</option>
+            <option>Links Seitenwand</option>
+            <option>Rechts Rückwand</option>
+            <option>Links Rückwand</option>
+            <option>Rechts Dach</option>
+            <option>Links Dach</option>
+          </select>
+        </div>
+        <div>
+          <label>Druckknopfmelderfach</label>
+          <select name="melderfach">
+            <option value="">Bitte wählen …</option>
+            <option>mit Melderfach</option>
+            <option>ohne Melderfach</option>
+          </select>
+        </div>
+        <div>
+          <label>Feuerlöscherfach</label>
+          <select name="feuerloescherfach">
+            <option value="">Bitte wählen …</option>
+            <option>für liegenden Feuerlöscher</option>
+            <option>für stehenden Feuerlöscher</option>
+            <option>ohne Feuerlöscherfach</option>
+          </select>
+        </div>
+        <div>
+          <label>Breite verfügbarer Platz [mm]</label>
+          <input type="number" name="breite" />
+        </div>
+        <div>
+          <label>Höhe verfügbarer Platz [mm]</label>
+          <input type="number" name="hoehe" />
+        </div>
+      </div>
+
+      <div class="item-grid item-grid-wandhydrant-masse" style="margin-top:0.45rem;">
+        <div>
+          <label>Tiefe verfügbarer Platz [mm]</label>
+          <input type="number" name="tiefe" />
+        </div>
+        <div>
+          <label>Foto-Dateiname</label>
+          <input type="text" name="fotoName" />
+          <label class="checkbox-row">
+            <input type="checkbox" name="fotoGemacht" /> Foto gemacht
+          </label>
+        </div>
+      </div>
+
+      <div style="margin-top:0.45rem;">
+        <label>Bemerkung</label>
+        <textarea name="bemerkung"></textarea>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    (function () {
+      const sectionConfig = {
+        haspel: { listId: "haspelList", tplId: "tpl-haspel" },
+        vorsatz: { listId: "vorsatzList", tplId: "tpl-vorsatz" },
+        wandhydrant: { listId: "wandhydrantList", tplId: "tpl-wandhydrant" },
+      };
+
+      function updateCounts() {
+        document.querySelectorAll(".accordion-item").forEach((accordion) => {
+          const type = accordion.dataset.section;
+          const cfg = sectionConfig[type];
+          if (!cfg) return;
+          const list = document.getElementById(cfg.listId);
+          const count = list ? list.children.length : 0;
+          const badgeSpan = accordion.querySelector(".badge .count");
+          if (badgeSpan) badgeSpan.textContent = String(count);
+        });
+      }
+
+      function addItem(type) {
+        const cfg = sectionConfig[type];
+        if (!cfg) return;
+        const list = document.getElementById(cfg.listId);
+        const tpl = document.getElementById(cfg.tplId);
+        const clone = tpl.content.cloneNode(true);
+        const card = clone.querySelector(".item-card");
+        const idx = list.children.length + 1;
+        card.dataset.index = idx;
+        card.querySelectorAll(".pos-index").forEach((sp) => (sp.textContent = idx));
+        list.appendChild(clone);
+        updateCounts();
+      }
+
+      function removeItem(btn) {
+        const card = btn.closest(".item-card");
+        const list = card.parentElement;
+        card.remove();
+        Array.from(list.children).forEach((child, i) => {
+          child.dataset.index = i + 1;
+          child.querySelectorAll(".pos-index").forEach((sp) => (sp.textContent = i + 1));
+        });
+        updateCounts();
+      }
+
+      // Accordion toggles
+      document.querySelectorAll(".accordion-header").forEach((hdr) => {
+        hdr.addEventListener("click", (e) => {
+          if (e.target.tagName === "BUTTON") return;
+          const item = hdr.closest(".accordion-item");
+          item.classList.toggle("open");
+        });
+      });
+
+      // Add-item buttons
+      document.querySelectorAll(".add-item").forEach((btn) =>
+        btn.addEventListener("click", () => addItem(btn.dataset.type))
+      );
+
+      // Remove-item via event delegation
+      document.body.addEventListener("click", (e) => {
+        const rmBtn = e.target.closest(".remove-item");
+        if (rmBtn) removeItem(rmBtn);
+      });
+
+      // Toolbar
+      document.getElementById("printBtn").addEventListener("click", () => {
+        window.print();
+      });
+
+      document.getElementById("expandAllBtn").addEventListener("click", () => {
+        document
+          .querySelectorAll(".accordion-item")
+          .forEach((a) => a.classList.add("open"));
+      });
+
+      document.getElementById("collapseAllBtn").addEventListener("click", () => {
+        document
+          .querySelectorAll(".accordion-item")
+          .forEach((a) => a.classList.remove("open"));
+      });
+
+      // Startzustand
+      updateCounts();
+    })();
+  </script>
 </body>
 </html>
